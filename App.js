@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useState, useEffect } from "react";
 import { useFonts } from "expo-font";
+
 import { useRoute } from "./router";
 
 // import MapScreen from "./src/Screens/MapScreen/MapScreen";

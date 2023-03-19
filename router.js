@@ -1,4 +1,6 @@
 import React from "react";
+import { TouchableOpacity, StyleSheet, View } from "react-native";
+import { useState } from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -7,6 +9,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AntDesign } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import LoginScreen from "./src/Screens/auth/LoginScreen/LoginScreen";
 import RegistrationScreen from "./src/Screens/auth/RegistrationScreen/RegistrationScreen";
@@ -43,6 +46,10 @@ export const useRoute = (isAuth) => {
           tabBarIcon: ({ focused, size, color }) => (
             <AntDesign name="appstore-o" size={size} color={color} />
           ),
+          headerRight: () => (
+            <MaterialIcons name="logout" size={24} color="black" />
+          ),
+          title: "Публикации",
         }}
       ></MainTab.Screen>
       <MainTab.Screen
@@ -50,8 +57,13 @@ export const useRoute = (isAuth) => {
         component={CreatePostsScreen}
         options={{
           tabBarIcon: ({ focused, size, color }) => (
-            <Fontisto name="plus-a" size={size} color={color} />
+            <View style={styles.addButton}>
+              <Fontisto name="plus-a" size={13} color={"#FFFFFF"} />
+            </View>
+
+            // </TouchableOpacity>
           ),
+          title: "Создать публикацию",
         }}
       ></MainTab.Screen>
       <MainTab.Screen
@@ -61,8 +73,20 @@ export const useRoute = (isAuth) => {
           tabBarIcon: ({ focused, size, color }) => (
             <Ionicons name="md-person-outline" size={size} color={color} />
           ),
+          title: "Профиль",
         }}
       ></MainTab.Screen>
     </MainTab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  addButton: {
+    width: 70,
+    height: 40,
+    backgroundColor: "#FF6C00",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
+  },
+});
