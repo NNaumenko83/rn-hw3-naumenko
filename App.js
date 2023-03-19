@@ -1,26 +1,14 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  ImageBackground,
-  View,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Text,
-} from "react-native";
-import RegistrationScreen from "./src/Screens/RegistrationScreen/RegistrationScreen";
+// import { StatusBar } from "expo-status-bar";
+import { StyleSheet } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useState, useEffect } from "react";
 import { useFonts } from "expo-font";
 import LoginScreen from "./src/Screens/LoginScreen/LoginScreen";
+import RegistrationScreen from "./src/Screens/RegistrationScreen/RegistrationScreen";
 
-const backgroundImage = require("./assets/images/bg_new.png");
+// const backgroundImage = require("./assets/images/bg_new.png");
 
 export default function App() {
-  const [visibleScreen, setVisibleScreen] = useState("SignIn");
-
-  const toggleVisibleScreen = (screenName) => {
-    setVisibleScreen(screenName);
-  };
   const [fontsLoaded] = useFonts({
     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
     "Inter-VariableFont": require("./assets/fonts/Inter-VariableFont.ttf"),
@@ -39,35 +27,17 @@ export default function App() {
     SplashScreen.hideAsync();
   }
 
-  return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss();
-      }}
-    >
-      <View style={styles.container}>
-        <ImageBackground source={backgroundImage} style={styles.image}>
-          {visibleScreen === "SignIn" ? (
-            <RegistrationScreen toggleVisibleScreen={toggleVisibleScreen} />
-          ) : (
-            <LoginScreen toggleVisibleScreen={toggleVisibleScreen} />
-          )}
-          {/* <Text style={{ fontFamily: "Inter-VariableFont" }}>HELLO</Text> */}
-        </ImageBackground>
-        <StatusBar style="auto" />
-      </View>
-    </TouchableWithoutFeedback>
-  );
+  return <RegistrationScreen />;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-  },
-  image: {
-    flex: 1,
-    justifyContent: "flex-end",
-    width: "100%",
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     alignItems: "center",
+//   },
+//   image: {
+//     flex: 1,
+//     justifyContent: "flex-end",
+//     width: "100%",
+//   },
+// });
