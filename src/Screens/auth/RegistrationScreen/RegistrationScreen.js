@@ -25,7 +25,7 @@ const btnImg = require("../../../../assets/images/add.png");
 
 const backgroundImage = require("../../../../assets/images/bg_new.png");
 
-export default RegistrationScreen = () => {
+export default RegistrationScreen = ({ navigation }) => {
   const [keyboardStatus, setKeyboardStatus] = useState(false);
   const [state, setState] = useState(initialState);
   const [isSequre, setIsSequre] = useState(true);
@@ -209,7 +209,7 @@ export default RegistrationScreen = () => {
                     <Text style={styles.btnTitle}>Зарегистрироваться</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => {}}
+                    onPress={() => navigation.navigate("Login")}
                     style={{
                       marginBottom: 78,
                       alignItems: "center",

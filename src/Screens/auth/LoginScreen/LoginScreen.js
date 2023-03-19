@@ -22,7 +22,7 @@ const initialState = {
 
 const backgroundImage = require("../../../../assets/images/bg_new.png");
 
-export default LoginScreen = () => {
+export default LoginScreen = ({ navigation }) => {
   const [keyboardStatus, setKeyboardStatus] = useState(false);
   const [state, setState] = useState(initialState);
   const [isSequre, setIsSequre] = useState(true);
@@ -160,7 +160,7 @@ export default LoginScreen = () => {
                     <Text style={styles.btnTitle}>Войти</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => {}}
+                    onPress={() => navigation.navigate("Register")}
                     style={{
                       marginBottom: 78,
                       alignItems: "center",
