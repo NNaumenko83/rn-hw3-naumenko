@@ -21,9 +21,9 @@ const initialState = {
   password: "",
 };
 
-const btnImg = require("../../../assets/images/add.png");
+const btnImg = require("../../../../assets/images/add.png");
 
-const backgroundImage = require("../../../assets/images/bg_new.png");
+const backgroundImage = require("../../../../assets/images/bg_new.png");
 
 export default RegistrationScreen = () => {
   const [keyboardStatus, setKeyboardStatus] = useState(false);

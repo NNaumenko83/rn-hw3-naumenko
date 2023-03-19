@@ -20,7 +20,7 @@ const initialState = {
   password: "",
 };
 
-const backgroundImage = require("../../../assets/images/bg_new.png");
+const backgroundImage = require("../../../../assets/images/bg_new.png");
 
 export default LoginScreen = () => {
   const [keyboardStatus, setKeyboardStatus] = useState(false);
