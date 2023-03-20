@@ -71,7 +71,7 @@ export const useRoute = (isAuth) => {
         component={ProfileScreen}
         options={{
           tabBarIcon: ({ focused, size, color }) => (
-            <Ionicons name="md-person-outline" size={size} color={color} />
+            <Ionicons name="md-person-outline" size={24} color={color} />
           ),
           title: "Профиль",
         }}
