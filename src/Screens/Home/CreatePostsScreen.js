@@ -15,20 +15,42 @@ import React, { useState, useEffect } from "react";
 
 import { Camera, CameraType } from "expo-camera";
 
+import * as Location from "expo-location";
+import { Permissions } from "expo-permissions";
+
 export default CreatePostsScreen = ({ navigation }) => {
-  // const [hasCameraPermission, setHasCameraPermission] = useState(null);
-  const [camera, setCamera] = useState(null);
+  const [hasCameraPermission, setHasCameraPermission] = useState(null);
+  const [cameraRef, setCameraRef] = useState(null);
   const [photo, setPhoto] = useState(null);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const cameraStatus = await Camera.requestCameraPermissionsAsync();
-  //     setHasCameraPermission(cameraStatus.status === "granted");
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const { status } = await Permissions.askAsync(Permissions.LOCATION);
+      console.log(status);
+      if (status !== "granted") {
+        return;
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const cameraStatus = await Camera.requestCameraPermissionsAsync();
+      setHasCameraPermission(cameraStatus.status === "granted");
+    })();
+  }, []);
+
+  if (hasCameraPermission === null) {
+    return <View />;
+  }
+  if (hasCameraPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
 
   const takePhoto = async () => {
-    const photo = await camera.takePictureAsync();
+    const photo = await cameraRef.takePictureAsync();
+    let location = await Location.getCurrentPositionAsync({});
+    console.log(location);
     setPhoto(photo.uri);
   };
 
@@ -42,7 +64,9 @@ export default CreatePostsScreen = ({ navigation }) => {
         <Camera
           style={styles.camera}
           type={CameraType.back}
-          ref={(ref) => setCamera(ref)}
+          ref={(ref) => {
+            setCameraRef(ref);
+          }}
         >
           {photo && (
             <View style={styles.takePhotoContainer}>
@@ -55,7 +79,6 @@ export default CreatePostsScreen = ({ navigation }) => {
 
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.button} onPress={takePhoto}>
-              {/* <Text style={styles.text}>Flip Camera</Text> */}
               <Fontisto name="camera" size={20} color="white" />
             </TouchableOpacity>
           </View>
@@ -79,7 +102,6 @@ const styles = StyleSheet.create({
 
   cameraContainer: {
     borderRadius: 10,
-    backgroundColor: "blue",
     height: 240,
     marginTop: 32,
     marginHorizontal: 16,
