@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  TextInput,
   TouchableWithoutFeedback,
   Platform,
   KeyboardAvoidingView,
@@ -17,18 +18,21 @@ import { Camera, CameraType } from "expo-camera";
 
 import * as Location from "expo-location";
 import { Permissions } from "expo-permissions";
+import { SimpleLineIcons } from "@expo/vector-icons";
 
 export default CreatePostsScreen = ({ navigation }) => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
   const [photo, setPhoto] = useState(null);
 
+  const [photoName, setPhotoName] = useState();
+  const [photoLocationName, setPhotoLocationName] = useState();
+
   useEffect(() => {
     (async () => {
-      const { status } = await Permissions.askAsync(Permissions.LOCATION);
-      console.log(status);
+      let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        return;
+        console.log("Permission to access location was denied");
       }
     })();
   }, []);
@@ -55,7 +59,7 @@ export default CreatePostsScreen = ({ navigation }) => {
   };
 
   const sendPhoto = () => {
-    navigation.navigate("Posts", { photo });
+    navigation.navigate("Posts", { photo, photoName, photoLocationName });
   };
 
   return (
@@ -84,8 +88,48 @@ export default CreatePostsScreen = ({ navigation }) => {
           </View>
         </Camera>
       </View>
+      <Text
+        style={{
+          marginTop: 8,
+          marginLeft: 16,
+          fontSize: 16,
+          lineHeight: 19,
+          color: "#BDBDBD",
+        }}
+      >
+        Загрузите фото
+      </Text>
+
+      <View style={styles.form}>
+        <TextInput
+          style={styles.input}
+          inputMode="text"
+          placeholder={"Название..."}
+          placeholderTextColor={"#BDBDBD"}
+          value={photoName}
+          onChangeText={(value) => setPhotoName(value)}
+        />
+        <View style={{ marginHorizontal: 16 }}>
+          <TextInput
+            style={[styles.input, { paddingLeft: 25, marginHorizontal: 0 }]}
+            inputMode="text"
+            placeholder={"Местность..."}
+            placeholderTextColor={"#BDBDBD"}
+            value={photoLocationName}
+            onChangeText={(value) => setPhotoLocationName(value)}
+          />
+          <SimpleLineIcons
+            name="location-pin"
+            size={18}
+            color="#BDBDBD"
+            style={{ position: "absolute", top: "30%" }}
+          />
+        </View>
+      </View>
+
       <TouchableOpacity
-        activeOpacity={0.5}
+        disabled={!photo}
+        activeOpacity={0.6}
         style={styles.buttonSend}
         onPress={sendPhoto}
       >
@@ -120,7 +164,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: "#FF6C00",
     marginHorizontal: 16,
-    marginTop: 43,
+    marginTop: 32,
     marginBottom: 20,
     paddingTop: 16,
     paddingBottom: 16,
@@ -143,13 +187,24 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10,
     left: 10,
-
     height: 90,
     width: 90,
-
     borderColor: "yellow",
     borderWidth: 2,
-
     borderRadius: 5,
+  },
+
+  form: { marginTop: 32 },
+  input: {
+    // justifyContent: "center",
+    marginHorizontal: 16,
+    // paddingLeft: 16,
+    borderBottomWidth: 1,
+    borderColor: "#E8E8E8",
+    height: 50,
+    borderRadius: 6,
+    fontSize: 16,
+    lineHeight: 19,
+    color: "#212121",
   },
 });

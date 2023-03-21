@@ -11,8 +11,6 @@ import { useRoute } from "./router";
 
 import { NavigationContainer } from "@react-navigation/native";
 
-// const backgroundImage = require("./assets/images/bg_new.png");
-
 export default function App() {
   const [fontsLoaded] = useFonts({
     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),

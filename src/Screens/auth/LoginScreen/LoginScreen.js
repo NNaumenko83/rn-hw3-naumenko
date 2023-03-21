@@ -210,7 +210,6 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    // justifyContent: "center",
     marginHorizontal: 16,
     paddingLeft: 16,
     borderWidth: 1,
@@ -266,80 +265,3 @@ const styles = StyleSheet.create({
     color: "#1B4371",
   },
 });
-
-// const styles = StyleSheet.create({
-//   addbutton: {
-//     marginTop: "65%",
-//     left: "90%",
-//     height: 25,
-//     width: 25,
-//     pointerEvents: "auto",
-//   },
-//   photoConteiner: {
-//     marginTop: -60,
-//     left: "50%",
-
-//     height: 120,
-//     width: 120,
-//     backgroundColor: "#F6F6F6",
-//     borderRadius: 16,
-//   },
-//   container: { justifyContent: "flex-end" },
-//   input: {
-//     marginHorizontal: 16,
-//     paddingLeft: 16,
-//     borderWidth: 1,
-//     borderColor: "#E8E8E8",
-//     backgroundColor: "#F6F6F6",
-//     height: 50,
-//     borderRadius: 6,
-//     fontFamily: "Roboto",
-//     fontSize: 16,
-//     lineHeight: 19,
-//     color: "#212121",
-//   },
-//   form: {
-//     bottom: 0,
-//     borderTopLeftRadius: 25,
-//     borderTopRightRadius: 25,
-
-//     backgroundColor: "#FFFFFF",
-//   },
-//   title: {
-//     marginHorizontal: 40,
-//     color: "#212121",
-//     marginBottom: 33,
-//     marginTop: 32,
-//     fontFamily: "Roboto",
-//     fontSize: 30,
-//     // fontWeight: 500,
-//     justifyContent: "center",
-//   },
-//   button: {
-//     borderRadius: 100,
-//     backgroundColor: "#FF6C00",
-//     marginHorizontal: 16,
-//     marginTop: 43,
-//     marginBottom: 20,
-//     paddingTop: 16,
-//     paddingBottom: 16,
-//     alignItems: "center",
-//   },
-//   showPass: {
-//     fontFamily: "Roboto",
-//     fontSize: 16,
-//     top: 8,
-//     right: 20,
-//     position: "absolute",
-//   },
-//   btnTitle: {
-//     fontFamily: "Roboto",
-//     fontSize: 16,
-//     color: "#FFFFFF",
-//   },
-//   toggleButton: {
-//     fontFamily: "Roboto",
-//     fontSize: 16,
-//     color: "#1B4371",
-//   },
-// });
