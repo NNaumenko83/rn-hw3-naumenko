@@ -59,7 +59,11 @@ export default CreatePostsScreen = ({ navigation }) => {
   };
 
   const sendPhoto = () => {
-    navigation.navigate("Posts", { photo, photoName, photoLocationName });
+    navigation.navigate("DefaultScreenPosts", {
+      photo,
+      photoName,
+      photoLocationName,
+    });
   };
 
   return (
@@ -76,7 +80,7 @@ export default CreatePostsScreen = ({ navigation }) => {
             <View style={styles.takePhotoContainer}>
               <Image
                 source={{ uri: photo }}
-                style={{ height: 200, width: 200 }}
+                style={{ height: "100%", width: "100%" }}
               />
             </View>
           )}
@@ -88,17 +92,31 @@ export default CreatePostsScreen = ({ navigation }) => {
           </View>
         </Camera>
       </View>
-      <Text
-        style={{
-          marginTop: 8,
-          marginLeft: 16,
-          fontSize: 16,
-          lineHeight: 19,
-          color: "#BDBDBD",
-        }}
-      >
-        Загрузите фото
-      </Text>
+      {!photo ? (
+        <Text
+          style={{
+            marginTop: 8,
+            marginLeft: 16,
+            fontSize: 16,
+            lineHeight: 19,
+            color: "#BDBDBD",
+          }}
+        >
+          Загрузите фото
+        </Text>
+      ) : (
+        <Text
+          style={{
+            marginTop: 8,
+            marginLeft: 16,
+            fontSize: 16,
+            lineHeight: 19,
+            color: "#BDBDBD",
+          }}
+        >
+          Редактировать фото
+        </Text>
+      )}
 
       <View style={styles.form}>
         <TextInput
@@ -128,12 +146,11 @@ export default CreatePostsScreen = ({ navigation }) => {
       </View>
 
       <TouchableOpacity
-        disabled={!photo}
         activeOpacity={0.6}
         style={styles.buttonSend}
         onPress={sendPhoto}
       >
-        <Text style={styles.btnTitle}>Опублікувати</Text>
+        <Text style={styles.btnTitle}>Опубликовать</Text>
       </TouchableOpacity>
     </View>
   );
@@ -188,10 +205,11 @@ const styles = StyleSheet.create({
     top: 10,
     left: 10,
     height: 90,
-    width: 90,
-    borderColor: "yellow",
+    width: 150,
+    borderColor: "white",
     borderWidth: 2,
     borderRadius: 5,
+    backgroundColor: "pink",
   },
 
   form: { marginTop: 32 },

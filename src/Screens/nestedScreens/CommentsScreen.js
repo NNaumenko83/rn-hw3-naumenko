@@ -9,14 +9,10 @@ import {
   Keyboard,
 } from "react-native";
 
-import { StatusBar } from "expo-status-bar";
-
-const backgroundImage = require("../../../assets/images/bg_new.png");
-
 export default CommentsScreen = () => {
   return (
     <View style={styles.mainContainer}>
-      <Text>Comments</Text>
+      <Text>Далі тут будуть коментарі</Text>
     </View>
   );
 };

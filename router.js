@@ -46,10 +46,7 @@ export const useRoute = (isAuth) => {
           tabBarIcon: ({ focused, size, color }) => (
             <AntDesign name="appstore-o" size={size} color={color} />
           ),
-          headerRight: () => (
-            <MaterialIcons name="logout" size={24} color="black" />
-          ),
-          title: "Публикации",
+          headerShown: false,
         }}
       ></MainTab.Screen>
       <MainTab.Screen
